@@ -9,6 +9,19 @@ function HomePage() {
 
     const enteredEmail = emailRef.current.value;
     const enteredFeedback = feedbackRef.current.value;
+
+    fetch('/api/feedback', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: enteredEmail,
+        text: enteredFeedback,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   };
   return (
     <div>
